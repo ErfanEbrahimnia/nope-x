@@ -1,0 +1,19 @@
+{
+  "manifest_version": 3,
+  "name": "Nope X",
+  "version": "1.0",
+  "description": "Adds a dislike button to posts on X",
+  "permissions": ["activeTab"],
+  "content_scripts": [
+    {
+      "matches": ["https://x.com/*", "https://twitter.com/*"],
+      "js": ["content_scripts/content.js"]
+    }
+  ],
+  "icons": {
+    "16": "assets/icon/nope-x-16.png",
+    "32": "assets/icon/nope-x-32.png",
+    "48": "assets/icon/nope-x-48.png",
+    "128": "assets/icon/nope-x-128.png"
+  }
+}
