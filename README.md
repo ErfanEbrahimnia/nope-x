@@ -10,6 +10,12 @@ I was tired of 𝕏 bombarding me with political noise and irrelevant content. T
 
 ## Installation
 
+### Default way
+
+You can install the extension from the [Chrome Webstore](https://chromewebstore.google.com/detail/nope-x/ccdjdfigimnakjepeiemjhfjeekklhaa)
+
+### From source
+
 1. **Download the Code**: Click the green "Code" button on GitHub and select "Download ZIP".
 2. **Load the Extension**: Follow [this guide](https://developer.chrome.com/docs/extensions/get-started/tutorial/hello-world#load-unpacked) to load the unpacked `extension` folder in your browser's developer mode.
 3. **Use It**: Visit 𝕏 and start cleaning up your timeline
