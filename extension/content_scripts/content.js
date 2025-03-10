@@ -10,9 +10,10 @@ document.addEventListener("click", handleButtonClick, true);
 function appendNopeButton() {
   const posts = document.getElementsByTagName("article");
 
-  const forYouTabActive = !!document.querySelector(
-    'div[data-testid="ScrollSnap-List"] > div:first-child a[href="/home"][aria-selected="true"]'
-  );
+  const forYouTabActive =
+    !!document.querySelector(
+      'div[data-testid="ScrollSnap-List"] > div:first-child a[href="/home"][aria-selected="true"]'
+    ) && window.location.pathname.includes("/home");
 
   if (!forYouTabActive) return;
 
@@ -24,7 +25,7 @@ function appendNopeButton() {
   });
 }
 
-function handleButtonClick(event) {
+async function handleButtonClick(event) {
   const clickedButton = event.target.closest("button");
 
   if (!clickedButton || !clickedButton.classList.contains(BUTTON_CLASS)) return;
@@ -34,20 +35,30 @@ function handleButtonClick(event) {
 
   if (menuButton) {
     menuButton.click();
+
+    await delay(10);
     clickNotInterested();
+
+    await delay(200);
+    clickNotRelevant();
   }
 }
 
 function clickNotInterested() {
-  // need to wait until menu is open
-  setTimeout(() => {
-    const menu = document.querySelector('div[data-testid="Dropdown"]');
-    if (menu && menu.firstChild) {
-      menu.firstChild.click();
-    }
-  }, 0);
+  const menu = document.querySelector('div[data-testid="Dropdown"]');
+  if (menu && menu.firstChild) {
+    menu.firstChild.click();
+  }
 }
 
+function clickNotRelevant() {
+  const notRelevantButton = document.querySelector(
+    "article > div > div > div.css-175oi2r.r-18u37iz > div > div:nth-child(2) > button:nth-child(2)"
+  );
+  if (notRelevantButton) {
+    notRelevantButton.click();
+  }
+}
 function addNopeButton(article) {
   const likeButton = article.querySelector('button[data-testid="like"]');
   if (!likeButton) return;
@@ -78,4 +89,8 @@ function createButtonContainer(button) {
   containerClone.appendChild(button);
 
   return containerClone;
+}
+
+async function delay(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
 }
